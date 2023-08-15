@@ -1,0 +1,86 @@
+
+{% load static %}
+{% include "head.html" %}
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<style>
+    #form{
+        margin: 10px;
+    }
+
+    input{
+        display:inline;
+        justify-content:center;
+        box-sizing:border-box; 
+        border-radius:5px; 
+        padding: 12px 20px;
+        margin: 10px;
+        width: 80%;
+        box-shadow: 2px 2px 2px rgb(137, 137, 249);
+        border: 2px solid #ccc;
+        background-color: #f8f8f8;
+        font-size: 16px;
+    }
+
+    label{
+        font-size:1rem;
+        display:block;
+        box-sizing:border-box; 
+        border-radius:px; 
+    }
+
+    textarea {
+        display:inline;
+        justify-content:center;
+        margin: 10px;
+        width: 80%;
+        height: 150px;
+        padding: 12px 20px;
+        box-sizing: border-box;
+        border: 2px solid #ccc;
+        border-radius: 5px;
+        background-color: #f8f8f8;
+        font-size: 16px;
+        resize: none;
+}
+.brf{
+    background-color: rgb(156, 156, 181);
+    font-size: 1rem;
+    text-align: center;
+    padding: 0px;
+
+}
+</style>
+
+<body>
+    <div style="background-color: rgb(156, 156, 181);font-size:45px;text-align: center;font-weight: 500;"><i>
+        <b>{{user.username}}</b></i> Upload syllabus and recommended textbook here <button style="float: right;margin: 6px; padding: 10px;background-color: rgb(216, 138, 138);"><a href="/page_admin">
+          <b>Back --></b>
+         </a></button>
+    </div>
+    <br>
+
+
+
+    <form class="form" method="post" enctype="multipart/form-data" style="background-color: beige;border-radius: 10px;margin-right: 5%;border-radius: 40px; margin-left: 5%; padding: 20px; text-align:inherit ;font-size: larger;box-shadow: 2px 2px 2px 2px rgb(137, 137, 249);">
+        {% csrf_token %}
+        {{form.media}}
+      {{form.as_p}}
+     
+  
+         <button type="submit">Upload</button>
+    </form>
+
+
+
+</body>
+</html>
+
+
+
+

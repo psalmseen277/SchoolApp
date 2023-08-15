@@ -1,0 +1,9 @@
+{% for x in obj %}
+<form method="POST">
+    {% csrf_token %}
+    <h5>do you want to delete this image</h5>
+    <a href="{% url "delete" x.id %}" style="background-color: red;">delete</a>
+
+  
+  </form>
+{% endfor %}

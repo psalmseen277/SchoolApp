@@ -1,0 +1,33 @@
+{% block page_content %}
+{% load static %}
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+ 
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{form.as_p}}
+    <!-- <input typkkkkkkkkkkkkkcke="file" name="myfile"> -->
+    <button type="submit">Upload comment</button>
+  </form>
+  <hr>
+ <h3> here we go</h3>
+
+ {% for x in picture %}
+ <div style="display: flex;">
+     <div class="col-md-4">{{ x.name }}</div>
+     <img src="{{ x.image.url }}" class="img-responsive" style="width: 50%;float: left;margin-right: 10px;" alt="">
+ </div>
+ {% endfor %}
+  
+
+</body>
+</html>
+
+
+{% endblock %}

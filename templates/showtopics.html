@@ -1,0 +1,32 @@
+{% block page_content %}
+{% include "head.html" %}
+<body style="background-color: rgb(150, 94, 94);">
+<legend><h1 style="font-size:30px;font-style: oblique;font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; background-color: rgb(101, 101, 255);text-align: center;">Welcome to class <i>{{user.username}}</i>
+       
+       <button style="background-color: orange;float: right;margin-left: 5px;"><a href="../../">Go back</a> </button></h1>
+
+       <h3 style="background-color: rgb(101, 101, 255);text-align: center;padding: 5px;font-size: 20px;margin-top: 0px;">SEE TOPICS:</h3>
+</legend>
+
+
+
+
+{% for i in data %}
+
+<div style="text-align: center; color: blue; font-size: 20px;background-color:rgb(198, 198, 221);border-top-left-radius: 50px;border-top-right-radius: 70px;padding: 10px;margin: 10px;">
+    <a href="{% url 'showcontent' i.slug %}">{{ i.topic }} &nbsp;</a> 
+     {% if user.is_superuser%}
+    <button style="font-size:20px; margin-left:10px;border-radius: 20px;color: red;background-color: red;">
+    <a href="{% url 'delete' i.id %}" style="font-size: 10px;color: black;">delete</a>
+     </button>
+    {% endif %}
+
+</div>
+
+{% endfor%} 
+
+
+
+
+{% endblock %}
+</body>

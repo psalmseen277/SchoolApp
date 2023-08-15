@@ -1,0 +1,49 @@
+{% block content %}
+{% load static %}
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+    integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+<link href="{% static 'assets/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+<style>
+    form{
+      margin: 10px;
+      background-color: grey;
+  }
+  
+  input{
+      display:inline;
+      justify-content:center;
+      box-sizing:border-box; 
+      border-radius:5px; 
+      padding: 20px 20px;
+      margin: 10px;
+      width: 80%;
+      box-shadow: 2px 2px 2px rgb(137, 137, 249);
+      border: 2px solid #ccc;
+      background-color: #f8f8f8;
+      font-size: 16px;
+  }
+  
+  label{
+      font-size:1rem;
+      display:block;
+      box-sizing:border-box; 
+      border-radius:px; 
+  }
+  
+  </style>
+
+
+<form action="" method="post"  style="background-color: beige;border-radius: 40px;padding: 40px;margin: 100px;text-align:center ;">
+    <h2 style="text-align: center;">LOG IN HERE</h2>
+    {% csrf_token %}
+    {{ login_form.as_p  }}
+    <button type="submit" style="background-color: green;">LOG IN</button>
+<h2 style="background-color:wheat;">You dont have an account click on this to  <b><a href="../register">SignUp</a></b> </h2>
+</form>
+
+
+
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+<script src="{% static 'assets/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+
+{% endblock %}

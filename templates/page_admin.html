@@ -1,0 +1,35 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body style="background-color: teal;">
+    
+
+<header style="background-color: rgb(156, 156, 181);font-size:45px;text-align: center;font-weight: 500;">welcome to the Admin page {{ user.username}}<button style="float: right;margin: 6px; padding: 10px;background-color: rgb(216, 138, 138);"><a href="../">
+     <b>Back --></b>
+    </a></button></header> 
+<hr>
+<h2 style="background-color: blue;margin-right: 30%;padding: 2%;border-radius: 15px;"><a style="color: white; " href="/upload"> Click on this link to upload a Lecture </a></h2>
+
+</hr>
+<hr>
+<h2 style="background-color: blue;margin-right: 30%;padding: 2%;border-radius: 15px;"><a style="color: white; " href="/syllabusupload"> Click on this link to upload a Syllabus </a></h2>
+
+</hr>
+<hr>
+<h2 style="background-color: blue;margin-right: 30%;padding: 2%;border-radius: 15px;"><a style="color: white; " href="/schedule_upload"> Click on this link to upload Schedule/Event </a></h2>
+
+</hr>
+
+{% if user.is_superuser %}
+<h2>Click on this button for further administrative actions             <button style="padding: 5px; background-color: greenyellow; border-radius:33px;"><a href="/admin" >    GO.</a></button></h2>
+  
+{%endif%}
+
+
+
+</body>
+</html> 

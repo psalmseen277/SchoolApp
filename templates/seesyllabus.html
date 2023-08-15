@@ -1,0 +1,49 @@
+<body >
+  {% include "head.html" %}
+    {% block page_content %}
+    
+    {% for i in data %}
+    {% if user.is_staff %}
+
+    {% endif %}
+    
+<div style="background-color: rgb(185, 185, 232);border-radius: 20px;">    
+        
+<hr><h2 style="margin: 5px;font-size: xx-large;"><u> Syllabus and Recommended Textbooks</u>
+<button style="background-color: red;border-radius: 40px;position: absolute;right: 10px;font-size: 20px;"><a href="/selectsyllabus"> Back</a></button> 
+<hr></h2> 
+<h1 style="margin: 5px;"><a href="">Class: {{ i.syllabus_class }} </h1>
+  <h2 style="margin: 5px;">Term: {{ i.syllabus_term}}</h2>
+  {% if user.is_superuser and user.is_staff %}
+  <form method="POST" style="background-color: rgb(198, 198, 221);padding: 5px;">
+    <h2>welcome <i>{{user.username}}</i></h2>
+      {% csrf_token %}     
+      <h3> click on this to update lecture</h3>
+      <div style="padding: 10px;">
+      <button style="background-color: rgb(192, 139, 227); border-radius: 5px;"> <a href="{% url 'update-syllabus' i.id %}" style="background-color: rgb(160, 97, 211);">update</a> </button>
+      
+      <button style="background-color: red; border-radius: 5px;"> <a href="{% url 'delete-syllabus' i.id %}" style="background-color: red;">delete</a> </button>
+    </div>
+    </form>
+  {%endif%}
+
+<h4 style="background-color: white;padding: 50px;margin: 20px;">SYLLABUS:
+  {{ i.scheme|safe}}</h4>
+        </h3>
+<hr>
+ <h3 style="background-color: white;padding: 50px;margin: 20px;"><u>RECOMMENDED TEXTBOOKS</u>:
+   <p >{{i.textbooks|safe}}</p></h3>
+
+   {% empty %}
+
+   <h1 style="background-color:rgb(228, 216, 216);color: red;text-align: center;margin: 20px;box-shadow: 4px 4px red;padding: 20px;">
+     Syllabus and Recommended textbooks yet to be uploaded
+   </h1>
+</div>    
+    {% endfor%} 
+    
+    
+    
+    
+    {% endblock %}
+    </body>

@@ -1,0 +1,32 @@
+{% block page_content %}
+{% load static %}
+{% include "head.html" %}
+{% load crispy_forms_tags %}
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://­cdn.jsdelivr.net/npm/­bootstrap@4.6.2/dist/­css/bootstrap.min.css" integrity="sha384-xO­olHFLEh07PJGoPkLv1Ib­cEPTNtaed2xpHsD9ESMh­qIYd0nLMwNLD69Npy4HI­+N" crossorigin="anonymo­us">  
+
+  <title>Document</title>
+</head>
+<body style="background-color: teal;">
+
+  <header style="background-color: rgb(156, 156, 181);font-size:45px;text-align: center;font-weight: 500;"><i>
+    <b>{{user.username}}</b></i> Upload syllabus and recommended textbook here <button style="float: right;margin: 6px; padding: 10px;background-color: rgb(216, 138, 138);"><a href="/page_admin">
+      <b>Back --></b>
+     </a></button></header>
+ <br>
+  <form method="post" enctype="multipart/form-data" style="background-color: beige;border-radius: 40px;padding: 40px;margin: 0px;text-align:inherit ;font-size: larger;box-shadow:10px 10px 10px rgb(12, 12, 14);">
+    {% csrf_token %}
+    {{form.media}}
+    {{form.as_p}}
+    <!-- <input typkkkkkkkkkkkkkcke="file" name="myfile"> -->
+    <button type="submit">Upload</button>
+  </form>
+  <hr>
+  <script src="https://­cdn.jsdelivr.net/npm/­jquery@3.5.1/dist/­jquery.slim.min.js" integrity="sha384-Df­Xdz2htPH0lsSSs5nCTpu­j/­zy4C+OGpamoFVy38MVBnE­+IbbVYUew+OrCXaRkfj"­ crossorigin="anonymo­us"></script> <script src="https://­cdn.jsdelivr.net/npm/­bootstrap@4.6.2/dist/­js/­bootstrap.bundle.min.­js" integrity="sha384-Fy­6S3B9q64WdZWQUiU+q4/­2Lc9npb8tCaSX9FK7E8Hn­Rr0Jz8D6OP9dO5Vg3Q9c­t" crossorigin="anonymo­us"></script>
+
+{% endblock %}
+

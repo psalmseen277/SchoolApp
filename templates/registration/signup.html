@@ -1,0 +1,72 @@
+
+<html>
+<body>
+{% block page_content %}
+{% include "head.html" %}
+{% load static %}
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+    integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+<link href="{% static 'assets/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+<style>
+    form{
+      margin: 10px;
+      background-color: grey;
+  }
+  .helptext{
+      visibility: hidden;
+  }
+  input{
+      display:inline;
+      justify-content:center;
+      box-sizing:border-box; 
+      border-radius:5px; 
+      padding: 20px 20px;
+      margin: 10px;
+      width: 90%;
+      box-shadow: 2px 2px 2px rgb(137, 137, 249);
+      border: 2px solid #ccc;
+      background-color: #f8f8f8;
+      font-size: 16px;
+  }
+  
+  label{
+      font-size:1rem;
+      display:block;
+      box-sizing:border-box; 
+      border-radius:px; 
+  }
+  
+  </style>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+		{% load static %}
+	<link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet" type="text/css" />
+	<link href="{% static 'css/bootstrap.theme.min.css' %}" rel="stylesheet" type="text/css" />
+    <title>Document</title>
+</head>
+<body>
+        
+     
+        <form method="POST" style="padding: 5px; background-color: beige;border-radius: 40px;" >
+            <h2 style="text-align: center;">SIGNUP A NEW USER HERE</h2>
+            {% csrf_token %}
+           {{form.as_p }}
+
+         
+            <div>
+                <button type="submit" class="btn btn-primary"style="background-color: green;">sign up</button>
+            </div>
+        </form>
+
+       
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+<script src="{% static 'assets/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+
+</body>
+</html>
+{% endblock %}

@@ -1,0 +1,26 @@
+<form method="post">
+    {% csrf_token %}
+    {{ syllabus_form.as_p }}
+    <input type="submit" value="submit" class="">
+
+</form>
+   
+    {% for i in data %}
+    
+    <h1 style="text-align: center; color: blue; font-size: 50px;background-color:rgb(198, 198, 221);border-top-left-radius: 50px;border-top-right-radius: 50px;"><a href="{% url 'showcontent' i.slug %}">Topic: {{ i.topic }} &nbsp;</a> </h1>
+    {% endfor%}
+
+    {% for i in data %}
+    
+    <h1 style="text-align: center; color: red; font-size: 50px;background-color:rgb(198, 198, 221);border-top-left-radius: 50px;border-top-right-radius: 50px;"><a href="{% url 'showcontent' i.slug %}">Topic: {{ i.topic }} &nbsp;</a> </h1>
+    {% endfor%}
+
+  
+
+<!-- <div>
+    {% for syllabus in syllabuss %}
+        <p>{{ syllabus.body }}</p>
+        <footer>{{ syllabus.name }} <b> this by </b>{{ syllabus.date }}</footer>
+    {% endfor  %}
+
+</div> -->

@@ -1,0 +1,75 @@
+<title>OBASI E-LEARBING PLATFORM</title>
+<header style="font-family: Cambria, Cochin, Georgia, Ti mes, 'Times New Roman', serif;text-align: center;background-color: rgb(221, 221, 222);color: rgb(102, 106, 106);font-family: sans-serif;font-style: unset;box-shadow:3px 3px 2px rgb(38, 38, 43);">
+    <H1 style="text-align: center;font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;">OBASI LEARNING PLATFORM</H1>
+    WELCOME <b style="color:green;">{{user.username}}!!!</b>
+
+</header>
+<body style="font-size: 1.5rem;">
+    
+
+<style>
+#one{
+    background-color: cornsilk;
+    padding-left:50px;
+    padding-right: 50px;
+    font-family: sans-serif;
+    font-weight: bold;
+    text-shadow: 2px 2px  red;
+    font-size: 3rem;
+    }
+#all{
+    box-shadow: 2px 2px 2px 2px#fcd0d7;
+    background-color: crimson;
+    padding: 0px;
+}
+#des{
+    background-color: whitesmoke;
+    padding-bottom : 50px;
+    padding-left: 5px;
+    margin: 5px;
+    border-radius: 10px 40px;
+}
+#date{
+    border-radius:40px 10px;
+    background-color: whitesmoke;
+    padding: 10px;
+    margin: 10px;
+}
+#link{
+    border-radius:10px 40px;
+    background-color: whitesmoke;
+    padding-left: 20px;
+    padding-bottom: 20px;
+    margin: 5px;
+}
+</style>
+
+
+<h1 style="padding: 20px;border-top-left-radius: 20px;border-top-right-radius: 20px; margin-left: 5%;margin-right: 5%; text-align: center;background-color: #f0f0f0;">Schedule/Event</h1>
+{% for i in obj  %}
+<div style="box-shadow: 3px 3px 3px rgb(63, 63, 63); background-color: f0f0f0;border-radius: 5px;padding: 5px;margin: 5px; margin-left: 5%;margin-right: 5%;font-family: sans-serif;">
+    
+    <div id="all">
+        <p id="one">Event Topic :{{i.event_name}}
+        </p>
+    </div>
+    <div>
+       <b>Description of Event: </b> <p id="des">
+            <br>{{ i.description}}</p>
+    </div>
+    <div>
+        <b>Date:</b> <p id="date"> 
+            <br>{{ i.date }}</p>
+            <b>Link:</b><p id="link"><a href="#">
+                <br>{{ i.link }}</a></p>
+    </div>
+
+
+
+
+
+</div>
+
+</body>
+<hr>
+{% endfor %}

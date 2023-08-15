@@ -1,0 +1,178 @@
+{% load static %}
+<title>OBASI E-LEARBING PLATFORM</title>
+<body style="font-size: xx-large;margin: 15px;">
+    
+
+<link href="{% static 'assets/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+
+<style>
+    form{
+        font-size: 1rem;
+       
+    }
+    input{
+        display:inline;
+        justify-content:center;
+        box-sizing:border-box; 
+        border-radius:5px; 
+        margin: 10px;
+        width: 40%;
+        box-shadow: 2px 2px 2px rgb(137, 137, 249);
+        border: 2px solid #ccc;
+        background-color: #f8f8f8;
+        font-size: 25px;
+        
+    }
+    textarea{
+        display:inline;
+        justify-content:center;
+        box-sizing:border-box; 
+        border-radius:5px; 
+        height: 150px;
+        margin: 10px;
+        width: 100%;
+        box-shadow: 2px 2px 2px rgb(137, 137, 249);
+        border: 2px solid #ccc;
+        background-color: #f8f8f8;
+        font-size: 25px;
+        resize: none;
+    }
+
+    label{
+	font-size:1rem;
+        display:block;
+		box-sizing:border-box; 
+		border-radius:20px; 
+    }
+
+</style>
+  <legend><h1 style="font-size:40px;font-style: oblique;font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; background-color: rgb(101, 101, 255);text-align: center;">Welcome to class <i>{{user.username}}</i>
+    <button style="background-color: orange;position: absolute;right :20px;top:15px;"><a href="../../">Go back</a> </button>
+</h1></legend>
+
+{% load static %}
+
+
+   
+    {% for i in data  %}
+
+  {% if user.is_superuser and user.is_staff %}
+     <form method="POST" style="background-color: rgb(161, 161, 238); height: 70px;">
+        {% csrf_token %}
+        <h3 > 
+            <button style="background-color: red; border-radius: 5px;position: absolute; right: 100px; margin: 10px;">
+                <a href="{% url 'delete' i.id %}" style="background-color: red;font-style: oblique;font-weight:10px ;">
+                   delete</a> 
+           </button>
+        </h3>
+        
+        <h3 >
+        <button style="background-color: red; border-radius: 5px;position: absolute; margin: 4px;">
+            <a href="{% url 'lectureupdate' i.id %}" style="background-color: red;font-style: oblique;font-weight:10px ;">
+                update</a> 
+        </button>
+ </h3>
+  
+      
+      </form>
+ {% endif %}
+<div style="margin: 15px;">
+    <h1 style="text-align: center; color: rgb(57, 57, 91); font-size: 50px;background-color:rgb(225, 225, 235);border-top-left-radius: 50px;border-top-right-radius: 50px;">Topic: {{ i.topic }} &nbsp;</h1>
+       <h2 style="text-align: center; color: rgb(57, 57, 91); font-size: 30px;background-color:rgb(225, 225, 235);">Class: {{ i.Class }}  &nbsp;</h2>
+    <h2 style="text-align: center; color: rgb(57, 57, 91); font-size: 35px;background-color:rgb(225, 225, 235); ">Term: {{ i.term }}      Date:{{ i.created_on}}  &nbsp;</h2>
+       <p style="font-size: 20px;">{{ i.content|safe }}</p>
+    {% endfor %} 
+ </div>   
+<div style=" position: relative;width: 99%;"> 
+
+    {% for i in data  %}
+    
+    <h1 style="background-color: aqua; text-align: center;">watch and listen to lectures about the above topic here</h1>
+    <video width="500" height="400" controls style="background-color: aqua;">
+        <source src="{{i.videos.url}}" type="video/mp4"></video>
+    <audio width="1000" height="600" controls style="background-color: aqua;float: right;margin-top: 150px;padding: 0px;">
+        <source src="{{i.audio.url}}" type="audio/mp3">  </audio>
+    
+    {% endfor %} 
+    
+</div>		
+    
+
+   
+
+    
+
+
+
+
+<br></br>
+<br>
+<hr>
+
+
+
+
+
+
+
+<!-- Comments Form --> 
+
+{% load crispy_forms_tags %}
+
+<form action="." method="post" style="border-radius: 80px 10px;margin: 50px; font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;text-align: center;background-color: rgb(221, 221, 222);color: rgb(102, 106, 106);padding: 5px; font-family: sans-serif;font-style: unset;box-shadow:3px 3px 2px rgb(38, 38, 43);">
+    <h2>Drop questions and answers here</h2>
+    {{ form|crispy }}
+    {% csrf_token %}
+    <button type="submit">Add comment</button>
+</form>
+<hr>
+<!-- Comment with nested comments -->
+{% for comment in comments %}
+
+    <div class="comment" style="background-color: rgb(228, 234, 235); border-radius: 10px; text-align:center ;">
+        <div style="background-color: lightblue;border-radius: 5px;text-align:center ;margin-left: 40px;margin-right: 40%;top: 40px;border-radius: 10px;">
+        <p class="info" style="padding: 5px;"><h1 style="font-size: 50px;"> <b><i> {{comment.name}} </i></b></h1> <h5 style="font-size:30px;"> posted this on the {{ comment.created_on }}</h5></p>
+           <h2 style="font-size: 45px;"> {{ comment.body|linebreaks }}</h2>
+            <div style="padding: 20px;">
+            <h5 style="font-size:30px;"> click on delete to delete comment</h5>
+            <button style="background-color: red; border-radius: 5px;"> <a href="{% url 'delete-comment' comment.id %}" style="background-color: red;">Delete</a> </button>
+       </div>  </div>
+        {% for replay in comment.children %}
+        <div style="background-color:rgb(212, 212, 233); margin-left: 40px;margin-right: 40%; border-radius: 40px;text-align: center;font-size: 30px;padding: 20px;">
+            <p class="info" style="font-size: 45px;"><h4 style="font-size: 45px;"> {{ replay.name }} </h4 >| {{ replay.created_on }}</p>
+           <h3 style="font-size: 40px;"> {{ replay.body }}</h3>
+        </div>
+        <br>
+        {% endfor %}
+
+
+        <form action="." method="post" style="border-radius: 80px 10px;margin-left: 40px;margin-right: 40%;background-color: rgb(221, 221, 222);padding: 10px;box-shadow: 2px 2px 2px rgb(26, 25, 25);">
+            <h5 style="font-size: 30px;font-style: normal;font-family: Georgia, 'Times New Roman', Times, serif;font-size: 2.0rem;">Reply</h5>
+            {{ form|crispy }}
+            {% csrf_token %}
+            <!-- Hidden input for parent comment.id -->
+            <input type="hidden" name="parent_id" value="{{ comment.id }}">
+            <input class="btn btn-primary" type="submit" value="Reply">
+        </form>
+    </div> 
+    <hr>
+
+    <script type="text/javascript">
+        var editor = CKEDITOR.replace('YourEditor')
+    </script>   
+{% endfor %}
+
+
+
+
+
+
+
+
+
+
+<script src="{% static 'assets/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+
+
+</div>
+</body>

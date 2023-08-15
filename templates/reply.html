@@ -1,0 +1,20 @@
+        <!-- <audio width="1000" height="500" controls style="background-color: aqua;">
+        <source src="{{comment.sound.url}}" type="video/mp4">
+            <h3>listen to lecture here</h3>
+    </audio>
+    <video width="150" height="100" controls style="background-color: aqua;">
+        <source src="{{comment.video.url}}" type="video/mp4">
+    </video> -->
+
+
+    <form action="." method="post">
+        {{ reply_form.as_p }}
+        {% csrf_token %}
+        <!-- Hidden input for parent comment.id -->
+        <input type="hidden" name="parent_id" value="{{ comment.id }}">
+        <input class="btn btn-primary" type="submit" value="Replay">
+    </form>
+    
+     {% for s in replies %}
+        {{ s.name}}
+     {%  endfor %}

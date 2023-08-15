@@ -1,0 +1,64 @@
+{% include "head.html" %}
+{% load static %}
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+    integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+<link href="{% static 'assets/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+
+
+<style>
+  form{
+    margin: 10px;
+}
+
+input{
+    display:inline;
+    justify-content:center;
+    box-sizing:border-box; 
+    border-radius:5px; 
+    padding: 20px 20px;
+    margin: 10px;
+    width: 80%;
+    box-shadow: 2px 2px 2px rgb(137, 137, 249);
+    border: 2px solid #ccc;
+    background-color: #f8f8f8;
+    font-size: 16px;
+}
+
+label{
+    font-size:1rem;
+    display:block;
+    box-sizing:border-box; 
+    border-radius:px; 
+}
+
+</style>
+
+{% block page_content %}
+
+<div style="text-align: center;">
+    <h1 style="font-size:20px;color: rgb(158, 103, 103);padding: 1px;">START LEARNING </i></h1>
+    <hr><button style="float: right; background-color: red; border-radius: 20px;"><a href="../">BACK --></a></button>
+    <h4>Input in the form yout class and term to see syllabus </h4>
+
+</div>
+
+<hr>
+<div class="row mt-5 justify-content-center" id="form" data-aos="fade-up" class="form-label"
+    style="padding:10px; box-shadow:5px 5px 5px 5px rgb(12, 12, 14);border-radius: 5px;margin: 50px;">
+    <div class="col-lg-10">
+        <form method="POST">
+
+            {% csrf_token %} {{form.as_p}}
+            <input style="background-color: green;" type="Submit" value="View Subjects">
+        </form>
+    </div>
+</div>
+<hr>
+{% if user.is_superuser %}
+<button><a href="syllabusupload/">Upload syllabus here</a></button>{% endif %}
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+    integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+    crossorigin="anonymous"></script>
+    <script src="{% static 'assets/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+
+{% endblock %}
